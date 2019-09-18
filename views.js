@@ -16,9 +16,18 @@ function searchBar () {
     `;
 }
 
+function author(el, id) {
+    return `
+        <a href="#" class="author" id="${id}">${el.name}</a><br>
+    `
+}
+
 function singleSong(returnedSong) {
     return `
         <h1>${returnedSong.title}</h1>
+        <section class="authors">
+            <h2>Authors:</h2>
+        </section>
         <section class="lyrics">
             <h2>Lyrics:</h2>
             ${returnedSong.body_chords_html}
@@ -50,6 +59,22 @@ function please() {
 
 function songList(el) {
     return `
-        <p class="songListItem" id="${el.id}">${el.title} - ${el.authors[0].name}</p>
+        <a href="#" class="songListItem" id="${el.id}">${el.title} - ${el.authors[0].name}</a><br>
+    `
+}
+
+function loading() {
+    return `
+        <h2 class="loading">Loading...</h2>
+    `
+}
+
+function bioCard(author) {
+    return `
+        <div id="bio">
+            <button id="button">X close</button>
+            <h3>${author.name}</h3>
+            <p>${author.bio}</p>
+        </div>
     `
 }
