@@ -1,8 +1,224 @@
 * {
     font-family: 'Puritan', sans-serif;
+    box-sizing: border-box;
 }
 
 .welcome {
     font-family: 'Walter Turncoat', cursive;
 }
 
+.guitar {
+    background-image: url(https://images.pexels.com/photos/15919/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+    background-size: 280%;
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+}
+
+body {
+    background-color: #383838;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+#searchBar {
+    border-radius: 3px;
+    font-size: 16px;
+    padding: 5px;
+    width: calc(100% - 31.781px);
+    color: darkslategray;
+    border: none;
+}
+
+#searchButton {
+    font-size: 16px;
+    padding: 5px;
+    background-color: #E08B3E;
+    border: none;
+    color: #3F250B;
+    border-radius: 3px;
+}
+
+#searchButton:hover {
+    cursor: pointer;
+}
+
+.inputs {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.label {
+    margin: 0;
+}
+
+.lyrics {
+    background-color: #E08B3E;
+    color: #383838;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.tab {
+    padding: 15px 20px 20px 13px;
+    background-color: white;
+    display: inline-block;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.label {
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #383838;
+}
+
+.link {
+    background-color: white;
+    color: #383838;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.chordline {
+    padding-top: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.chordline > span {
+    display: inline-block;
+}
+
+.searchbar {
+    padding-bottom: 20px;
+}
+
+.border {
+    border-top: 3px solid white;
+}
+
+#bio {
+    background-color: rgb(32,32,32,0.5);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    z-index: 5;
+    top: 0;
+    left: 0;
+}
+
+.card {
+    position: relative;
+    width: 90%;
+    top: 25%;
+    background-color: white;
+    color: #383838;
+    z-index: 6;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.cardContent {
+    margin: 0;
+}
+
+#button {
+    background-color: black;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: 3px solid white;
+    margin: 0;
+    font-size: 26px;
+    border-radius: 5px;
+}
+
+#button:hover {
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 426px) {
+
+    .welcome {
+        text-align: center;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        font-size: 75px;
+    }
+
+    #searchBar, #searchButton {
+        font-size: 28px;
+        padding: 10px;
+    }
+
+    #searchBar {
+        width: calc(100% - 58.125px);
+    }
+
+    h2 {
+        font-size: 50px;
+    }
+
+    a {
+        font-size: 35px;
+    }
+    
+    .link {
+        padding: 10px;
+    }
+
+    .chordline {
+        font-size: 30px;
+    }
+
+    .chordImg {
+        width: 150px;
+        height: auto;
+    }
+
+    .tab {
+        padding-left: 5px;
+        padding-bottom: 23px;
+    }
+
+    .cardContent {
+        font-size: 25px;
+        padding: 10px;
+    }
+
+    .cardContent > a {
+        font-size: 25px;
+        text-decoration: underline;
+    }
+
+    .cardContent > h3 {
+        font-size: 30px;
+    }
+
+}
+
+@media only screen and (min-width: 769px) {
+
+    .flex {
+        display: flex;
+    }
+    .left {
+        width: calc(100% - 185px);
+    }
+    .right {
+        width: 185px;
+    }
+}

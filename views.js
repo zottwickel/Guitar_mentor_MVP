@@ -4,45 +4,56 @@ function searchBar () {
             <header>
                 <h1 class="welcome">Welcome to Guitar Mentor!</h1>
             </header>
-            <section>
+            <section class="searchbar">
                 <form id="search">
-                    <p class="label">Search for a song!</p>
-                    <input id="song" type="text" for="search"><input type="submit" value="Go!" for="search">
+                    <div class="inputs">
+                        <p class="label">Search for a song:</p>                    
+                        <input id="searchBar" type="text" for="search"><input id="searchButton" type="submit" value="Go!" for="search">
+                    </div>
                 </form>
             </section>
-            <div id="response">
-            </div>
+            <section>
+                <div id="response" class="hidden">
+                </div>
+            </section>
         </main>
     `;
 }
 
 function author(el, id) {
     return `
-        <a href="#" class="author" id="${id}">${el.name}</a><br>
+        <div class="link">
+            <a href="#" class="author" id="${id}">${el.name}</a>
+        </div>
     `
 }
 
 function singleSong(returnedSong) {
     return `
-        <h1>${returnedSong.title}</h1>
-        <section class="authors">
-            <h2>Authors:</h2>
-        </section>
-        <section class="lyrics">
-            <h2>Lyrics:</h2>
-            ${returnedSong.body_chords_html}
-        </section>
-        <section class="chords">
-            <h2>Chords:</h2>
-        </section>
+        <h2>${returnedSong.title}</h2>
+        <div class="flex">
+            <div class="left">
+                <section class="authors">
+                    <h2>Authors:</h2>
+                </section>
+                <section>
+                    <h2>Lyrics:</h2>
+                    <div class="lyrics">
+                        ${returnedSong.body_chords_html}
+                    </div>
+                </section>
+            </div>
+            <div class="right">
+                <section class="chords">
+                    <h2>Chords:</h2>
+                </section>
+            </div>
+        </div>
     `
 }
 
 function chords(el) {
-    return `
-        <p>${el.name}</p>
-        <img src="${el.image_url}" alt="fingering for a ${el.name} chord">
-    `
+    return `<div class="tab"><img class="chordImg" src="${el.image_url}" alt="fingering for a ${el.name} chord"></div>`
 }
 
 function sorry() {
@@ -59,7 +70,9 @@ function please() {
 
 function songList(el) {
     return `
-        <a href="#" class="songListItem" id="${el.id}">${el.title} - ${el.authors[0].name}</a><br>
+        <div class="link">
+            <a href="#" class="songListItem" id="${el.id}">${el.title} - ${el.authors[0].name}</a>
+        </div>
     `
 }
 
@@ -73,8 +86,10 @@ function bioCard(author) {
     return `
         <div id="bio">
             <button id="button">X close</button>
-            <h3>${author.name}</h3>
-            <p>${author.bio}</p>
+            <div class="card">
+                <h3 class="cardContent">${author.name}</h3>
+                <p class="cardContent">${author.bio}</p>
+            </div>
         </div>
     `
 }

@@ -4,6 +4,8 @@ const data = { headers: { 'Guitarparty-Api-Key': '3c4daf3905d8c1ec2c49ce6faa3cc6
 function readyResponse() {
     $('header').remove();
     $('#response').empty();
+    $('#response').addClass('border');
+    $('#response').removeClass('hidden');
 }
 
 function loadIt () {
@@ -11,8 +13,29 @@ function loadIt () {
     $('#response').append(loading());
 }
 
+function clearBio() {
+    $('.loading').remove();
+    $('#bio').remove();
+}
+
+function prepareLyrics() {
+    $('strong').wrap('<div class="inlineChord"></div>');
+    $('.inlineChord').after('-');
+}
+
+function authorLoop(returnedSong) {
+    returnedSong.authors.forEach(function(el) {
+        let id = el.uri.match(/\d+/g)[1];
+        $('.authors').append(author(el, id));
+        $('#' + id).on('click', function() {
+            fetchBio(id);
+        });
+    })
+}
+
 function fetchQuery(song) {
     loadIt();
+    $('body').removeClass('guitar');
     fetch(`http://api.guitarparty.com/v2/songs/?query=${song}`, data)
         .then(response => {
             if (response.ok) {
@@ -32,6 +55,8 @@ function fetchQuery(song) {
             if (returnedSongs.length == 1) {
                 readyResponse();
                 $('#response').append(singleSong(returnedSongs[0]));
+                prepareLyrics();
+                authorLoop(returnedSongs[0]);
                 returnedSongs[0].chords.forEach(function (el) {
                     $('.chords').append(chords(el));
                 });
@@ -62,11 +87,13 @@ function fetchBio(id) {
         })
         .then(responseJson => {
             let author = responseJson;
-            $('.loading').remove();
-            $('#bio').remove();
+            if (author.bio == null) {
+                author.bio = "Sorry, no bio is available for this artist";
+            }
+            clearBio();
             $('.authors').append(bioCard(author));
             $('#button').on('click', function() {
-                $('#bio').remove();
+                clearBio();
             })
         })
 }
@@ -89,13 +116,8 @@ function fetchSong(id) {
             delete returnedSong.uri;
             readyResponse();
             $('#response').append(singleSong(returnedSong));
-            returnedSong.authors.forEach(function(el) {
-                let id = el.uri.match(/\d+/g)[1];
-                $('.authors').append(author(el, id));
-                $('#' + id).on('click', function() {
-                    fetchBio(id);
-                });
-            })
+            prepareLyrics();
+            authorLoop(returnedSong);
             returnedSong.chords.forEach(function (el) {
                 $('.chords').append(chords(el));
             });
@@ -111,7 +133,7 @@ function watchSong(id) {
 
 function watchSearch() {
     $('form').on('submit', function (event) {
-        let song = $('#song').val();
+        let song = $('#searchBar').val();
         event.preventDefault();
         fetchQuery(song);
     });
