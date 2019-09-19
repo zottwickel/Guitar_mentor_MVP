@@ -36,7 +36,7 @@ function authorLoop(returnedSong) {
 function fetchQuery(song) {
     loadIt();
     $('body').removeClass('guitar');
-    fetch(`https://api.guitarparty.com/v2/songs/?query=${song}`, data)
+    fetch(`http://api.guitarparty.com/v2/songs/?query=${song}`, data)
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -78,7 +78,7 @@ function fetchQuery(song) {
 }
 function fetchBio(id) {
     $('.authors').append(loading());
-    fetch(`https://api.guitarparty.com/v2/artists/${id}/`, data)
+    fetch(`http://api.guitarparty.com/v2/artists/${id}/`, data)
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -100,7 +100,7 @@ function fetchBio(id) {
 
 function fetchSong(id) {
     loadIt();
-    fetch(`https://api.guitarparty.com/v2/songs/${id}/`, data)
+    fetch(`http://api.guitarparty.com/v2/songs/${id}/`, data)
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -149,3 +149,5 @@ function init() {
 }
 
 $(init);
+
+/* http://thundering-property.surge.sh */
